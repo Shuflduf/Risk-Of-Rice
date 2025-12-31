@@ -7,8 +7,8 @@
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": [
-        "sway/workspaces",
-        "sway/mode",
+        "hyprland/workspaces",
+        "hyprland/submap",
         "sway/scratchpad",
         "custom/media"
     ],
@@ -16,7 +16,7 @@
         "sway/window"
     ],
     "modules-right": [
-        "mpd",
+        "mpris",
         "idle_inhibitor",
         "pulseaudio",
         "network",
@@ -25,10 +25,10 @@
         // "memory",
         // "temperature",
         "backlight",
-        "keyboard-state",
-        "sway/language",
+        // "keyboard-state",
+        // "sway/language",
         "battery",
-        "battery#bat2",
+        // "battery#bat2",
         "clock",
         "tray",
         "custom/power"
@@ -69,31 +69,10 @@
         "tooltip": true,
         "tooltip-format": "{app}: {title}"
     },
-    "mpd": {
-        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
-        "format-disconnected": "Disconnected ",
-        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
-        "unknown-tag": "N/A",
-        "interval": 5,
-        "consume-icons": {
-            "on": " "
-        },
-        "random-icons": {
-            "off": "<span color=\"#f53c3c\"></span> ",
-            "on": " "
-        },
-        "repeat-icons": {
-            "on": " "
-        },
-        "single-icons": {
-            "on": "1 "
-        },
-        "state-icons": {
-            "paused": "",
-            "playing": ""
-        },
-        "tooltip-format": "MPD (connected)",
-        "tooltip-format-disconnected": "MPD (disconnected)"
+    "mpris": {
+        "player": "spotify",
+        "format": "{player} ({status})",
+        "title-len": 20
     },
     "idle_inhibitor": {
         "format": "{icon}",
