@@ -21,9 +21,9 @@
         "pulseaudio",
         "network",
         "power-profiles-daemon",
-        "cpu",
-        "memory",
-        "temperature",
+        // "cpu",
+        // "memory",
+        // "temperature",
         "backlight",
         "keyboard-state",
         "sway/language",
@@ -166,12 +166,13 @@
     },
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-wifi": "{essid} ",
         "format-ethernet": "{ipaddr}/{cidr} ",
         "tooltip-format": "{ifname} via {gwaddr} ",
         "format-linked": "{ifname} (No IP) ",
         "format-disconnected": "Disconnected ⚠",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+        // "format-alt": "{ipaddr}/{cidr}",
+        "on-click": "hyprctl dispatch exec '[float] ghostty -e impala'"
     },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
