@@ -1,6 +1,8 @@
 import QtQuick
+import QtQuick.Effects
 import Quickshell.Hyprland
 import QtQuick.Layouts
+import Quickshell.Widgets
 
 RowLayout {
     // padding: 80
@@ -10,39 +12,57 @@ RowLayout {
     // anchors.margins: 8
     Repeater {
         model: Hyprland.workspaces
-        Rectangle {
+        Item {
             id: workspace_button
             required property HyprlandWorkspace modelData
-            // color: "#FF0000"
+
             implicitWidth: 30
             implicitHeight: 30
-            radius: 4
-            border {
+
+            Rectangle {
                 color: "#494A5B"
-                width: 3
+                radius: 4
+                anchors.fill: parent
             }
-            // border: 4
-            // padd
-            // width: 10
-            color: modelData.focused ? "#476894" : "#3B3542"
+            ClippingRectangle {
+                anchors.margins: 3
+                anchors.fill: parent
+                // padding
 
-            Text {
-                anchors.centerIn: parent
-                text: workspace_button.modelData.name
-                // padding: 8
-                color: workspace_button.modelData.focused ? "#FFFFFF" : "#A5ACB5"
+                radius: 4
+                color: workspace_button.modelData.focused ? "#476894" : "#3B3542"
+                // color: "transparent"
+                width: 26
+                height: 26
 
-                font {
-                    pixelSize: 14
-                    // bold: true
+                RectangularShadow {
+                    offset: Qt.vector2d(-5.0, -5.0)
+                    width: 30
+                    height: 9
+                    blur: 1
+                    color: "#1A1A1A"
+                    opacity: 100.0
+                    // radius: 30
+                    // spread: 10
                 }
+                Text {
+                    anchors.centerIn: parent
+                    text: workspace_button.modelData.name
+                    // padding: 8
+                    color: workspace_button.modelData.focused ? "#FFFFFF" : "#A5ACB5"
 
-                // anchors.: 8
+                    font {
+                        pixelSize: 14
+                        // bold: true
+                    }
 
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: workspace_button.modelData.activate()
+                    // anchors.: 8
+
                 }
+            }
+            MouseArea {
+                anchors.fill: parent
+                onClicked: workspace_button.modelData.activate()
             }
         }
     }

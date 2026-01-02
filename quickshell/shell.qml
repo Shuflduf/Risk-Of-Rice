@@ -11,7 +11,7 @@ PanelWindow {
     }
 
     color: "transparent"
-    implicitHeight: 50
+    implicitHeight: 38
     Bar {}
     // implicitWidth: 30
     //

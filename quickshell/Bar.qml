@@ -10,6 +10,6 @@ Item {
     // margin: 8
     anchors.top: parent.top
     anchors.margins: 4
-    implicitHeight: 42
+    implicitHeight: 30
     Workspaces {}
 }
