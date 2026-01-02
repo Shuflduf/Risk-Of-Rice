@@ -5,11 +5,14 @@ import QtQuick.Layouts
 import Quickshell.Widgets
 
 RowLayout {
-    // padding: 80
     anchors.verticalCenter: parent.verticalCenter
     anchors.left: parent.left
-    spacing: 4
-    // anchors.margins: 8
+    spacing: 2
+
+    // Component.onCompleted: {
+    //     Hyprland.rawEvent.connect(event => console.log(event.name));
+    // }
+
     Repeater {
         model: Hyprland.workspaces
         Item {
@@ -29,9 +32,10 @@ RowLayout {
                 color: "#494A5B"
                 radius: 4
                 anchors.fill: parent
+                anchors.margins: 1
             }
             ClippingRectangle {
-                anchors.margins: 3
+                anchors.margins: 4
                 anchors.fill: parent
                 // padding
 
@@ -47,7 +51,7 @@ RowLayout {
                     height: 8
                     blur: 1
                     color: "#1A1A1A"
-                    opacity: 100.0
+                    opacity: 0.5
                     // spread: 10
                 }
                 Text {
@@ -65,6 +69,31 @@ RowLayout {
 
                 }
             }
+            Image {
+                id: select
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.horizontalCenter: parent.horizontalCenter
+                // onBaselineOffsetChanged
+                // x: 20
+                // y: 20
+                height: 30
+                width: 30
+                visible: workspace_button.modelData.focused
+                Component.onCompleted: workspace_button.modelData.focusedChanged.connect(anim.start)
+
+                PropertyAnimation {
+                    id: anim
+                    target: select
+                    properties: "width,height"
+                    from: 50
+                    to: 30
+                    duration: 200
+                    easing.type: Easing.OutBack
+                }
+                // anchors.fill: parent
+                source: "selection.svg"
+            }
+
             MouseArea {
                 anchors.fill: parent
                 onClicked: workspace_button.modelData.activate()
