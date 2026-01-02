@@ -56,12 +56,14 @@ RowLayout {
                 }
                 Text {
                     anchors.centerIn: parent
+                    anchors.horizontalCenterOffset: 1
                     text: workspace_button.modelData.name
                     // padding: 8
                     color: workspace_button.modelData.focused ? "#FFFFFF" : "#A5ACB5"
 
                     font {
                         pixelSize: 14
+                        family: "RZPix"
                         // bold: true
                     }
 
@@ -87,7 +89,7 @@ RowLayout {
                     properties: "width,height"
                     from: 50
                     to: 30
-                    duration: 200
+                    duration: 150
                     easing.type: Easing.OutBack
                 }
                 // anchors.fill: parent
