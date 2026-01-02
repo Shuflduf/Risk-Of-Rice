@@ -19,6 +19,12 @@ RowLayout {
             implicitWidth: 30
             implicitHeight: 30
 
+            RectangularShadow {
+                anchors.fill: parent
+                offset: Qt.vector2d(0.0, 5.0)
+                spread: 1
+                color: Qt.rgba(0.0, 0.0, 0.0, 0.7)
+            }
             Rectangle {
                 color: "#494A5B"
                 radius: 4
@@ -38,11 +44,10 @@ RowLayout {
                 RectangularShadow {
                     offset: Qt.vector2d(-5.0, -5.0)
                     width: 30
-                    height: 9
+                    height: 8
                     blur: 1
                     color: "#1A1A1A"
                     opacity: 100.0
-                    // radius: 30
                     // spread: 10
                 }
                 Text {
