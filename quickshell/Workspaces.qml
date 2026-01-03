@@ -40,7 +40,7 @@ RowLayout {
             id: workspace_button
             required property HyprlandWorkspace modelData
 
-            implicitWidth: 30 + ((modelData.focused && modelData.toplevels.values.length > 0) ? 80 : 0)
+            implicitWidth: 30 + ((modelData.focused && modelData.toplevels.values.length > 0) ? activeWindowContainer.implicitWidth : 0)
             implicitHeight: 30
 
             Item {
@@ -90,7 +90,7 @@ RowLayout {
                         font {
                             pixelSize: 14
                             family: "RZPix"
-                            // bold: true
+                            bold: true
                         }
 
                         // anchors.: 8
@@ -128,14 +128,39 @@ RowLayout {
                 }
             }
             Rectangle {
+                id: activeWindowContainer
                 visible: modelData.focused && modelData.toplevels.values.length > 0
-                implicitWidth: 80
-                implicitHeight: 30
-                anchors.left: workspace_name.right
+                implicitWidth: activeWindowText.width + 20
+                implicitHeight: 25
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.verticalCenterOffset: 1
+                x: 29
+                z: -1
+                color: "#494A5B"
+                radius: 4
 
-                Text {
-                    text: workspaces.activeWindowName
-                    // text: JSON.stringify()
+                // anchors.left: workspace_name.right
+                // anchors.horizontalCenterOffset: 20
+                Rectangle {
+
+                    anchors.leftMargin: 0
+                    anchors.margins: 3
+                    anchors.fill: parent
+
+                    color: "#343A4D"
+
+                    Text {
+                        id: activeWindowText
+                        anchors.centerIn: parent
+                        text: workspaces.activeWindowName
+                        color: "#A5ACB5"
+                        font {
+                            pixelSize: 13
+                            family: "RZPix"
+                            // bold: true
+                        }
+                        // text: JSON.stringify()
+                    }
                 }
             }
         }
