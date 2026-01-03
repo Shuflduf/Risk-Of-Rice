@@ -30,17 +30,14 @@ RowLayout {
         });
     }
 
-    // Component.onCompleted: {
-    //     Hyprland.rawEvent.connect(event => console.log(event.name));
-    // }
-
     Repeater {
         model: Hyprland.workspaces
         Item {
             id: workspace_button
             required property HyprlandWorkspace modelData
+            property bool shouldNameBeVisible: (modelData.focused && modelData.toplevels.values.length > 0)
 
-            implicitWidth: 30 + ((modelData.focused && modelData.toplevels.values.length > 0) ? activeWindowContainer.implicitWidth : 0)
+            implicitWidth: 30 + activeWindowContainer.implicitWidth
             implicitHeight: 30
 
             Item {
@@ -107,13 +104,13 @@ RowLayout {
                     height: 30
                     width: 30
                     visible: workspace_button.modelData.focused
-                    Component.onCompleted: workspace_button.modelData.focusedChanged.connect(anim.start)
+                    Component.onCompleted: workspace_button.modelData.focusedChanged.connect(select_anim.start)
 
                     PropertyAnimation {
-                        id: anim
+                        id: select_anim
                         target: select
                         properties: "width,height"
-                        from: 50
+                        from: 70
                         to: 30
                         duration: 150
                         easing.type: Easing.OutBack
@@ -125,12 +122,15 @@ RowLayout {
                 MouseArea {
                     anchors.fill: parent
                     onClicked: workspace_button.modelData.activate()
+                    cursorShape: Qt.PointingHandCursor
                 }
             }
             Rectangle {
                 id: activeWindowContainer
-                visible: modelData.focused && modelData.toplevels.values.length > 0
-                implicitWidth: activeWindowText.width + 20
+                property real expandedWidth: activeWindowText.width + 20
+                visible: workspace_button.shouldNameBeVisible
+                implicitWidth: 0
+
                 implicitHeight: 25
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.verticalCenterOffset: 1
@@ -139,10 +139,44 @@ RowLayout {
                 color: "#494A5B"
                 radius: 4
 
-                // anchors.left: workspace_name.right
-                // anchors.horizontalCenterOffset: 20
-                Rectangle {
+                states: State {
+                    // name: "shown"
+                    when: workspace_button.shouldNameBeVisible
+                    PropertyChanges {
+                        target: activeWindowContainer
+                        implicitWidth: expandedWidth
+                        visible: workspace_button.shouldNameBeVisible
+                    }
+                }
 
+                transitions: Transition {
+                    SequentialAnimation {
+                        PropertyAnimation {
+                            target: activeWindowContainer
+                            property: "visible"
+                            duration: 0
+                        }
+                        PropertyAnimation {
+                            target: activeWindowContainer
+                            property: "implicitWidth"
+                            duration: 200
+                            easing.type: Easing.OutBack
+                        }
+                    }
+                }
+
+                // Component.onCompleted: workspace_button.modelData.focusedChanged.connect(name_anim.start)
+                // PropertyAnimation {
+                //     id: name_anim
+                //     target: activeWindowContainer
+                //     properties: "implicitWidth"
+                //     from: workspace_button.modelData.focused ? 0 : activeWindowContainer.expandedWidth
+                //     to: workspace_button.modelData.focused ? activeWindowContainer.expandedWidth : 0
+                //     duration: 200
+                //     easing.type: Easing.OutBack
+                // }
+
+                Rectangle {
                     anchors.leftMargin: 0
                     anchors.margins: 3
                     anchors.fill: parent
@@ -157,9 +191,7 @@ RowLayout {
                         font {
                             pixelSize: 13
                             family: "RZPix"
-                            // bold: true
                         }
-                        // text: JSON.stringify()
                     }
                 }
             }
