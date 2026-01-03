@@ -12,21 +12,19 @@ RowLayout {
     anchors.left: parent.left
     spacing: 2
 
+    function updateTopLevelName() {
+        let realTopLevel = Hyprland.toplevels.values.find(tl => tl.activated && tl.workspace.id == Hyprland.focusedWorkspace.id);
+        if (realTopLevel && realTopLevel.lastIpcObject.initialTitle) {
+            activeWindowName = realTopLevel.lastIpcObject.initialTitle;
+        }
+    }
     Component.onCompleted: {
         Hyprland.rawEvent.connect(event => {
-            if (event.name == "activewindowv2") {
-                Hyprland.refreshToplevels();
-                if (Hyprland.activeToplevel) {
-                    let initialClass = Hyprland.activeToplevel.lastIpcObject.initialClass;
-                    let parts = initialClass.split(".");
-                    let rawWindowName = parts[parts.length - 1];
-                    let startChar = rawWindowName.charAt(0).toUpperCase();
-                    let windowName = startChar + rawWindowName.slice(1);
-                    workspaces.activeWindowName = windowName;
-                } else {
-                    workspaces.activeWindowName = "FUCK";
-                }
-            }
+            Hyprland.refreshToplevels();
+            console.log(event.name);
+        });
+        Hyprland.toplevels.valuesChanged.connect(() => {
+            updateTopLevelName();
         });
     }
 
