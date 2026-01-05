@@ -15,7 +15,7 @@ RowLayout {
         Hyprland.rawEvent.connect(event => {
             Hyprland.refreshToplevels();
             let actualTopLevel = Hyprland.toplevels.values.find(tl => tl.activated && tl.workspace.id == Hyprland.focusedWorkspace.id);
-            if (actualTopLevel) {
+            if (actualTopLevel && actualTopLevel.lastIpcObject) {
                 workspaces.activeWindowName = actualTopLevel.lastIpcObject.initialTitle;
             } else {
                 workspaces.activeWindowName = "FUCK";
@@ -109,10 +109,12 @@ RowLayout {
             Rectangle {
                 id: active_window_container
                 property real expandedWidth: active_window_text.width + 20
-                visible: workspace_button.shouldNameBeVisible
                 implicitWidth: 0
+                visible: implicitWidth > 20
 
-                Component.onCompleted: workspaces.activeWindowNameChanged.connect(name_anim.start)
+                Component.onCompleted: workspaces.activeWindowNameChanged.connect(() => {
+                    active_window_container.implicitWidth = workspace_button.shouldNameBeVisible ? expandedWidth : 0;
+                })
 
                 implicitHeight: 25
                 anchors.verticalCenter: parent.verticalCenter
@@ -131,31 +133,31 @@ RowLayout {
                 //     }
                 // }
 
+                Behavior on implicitWidth {
+                    NumberAnimation {
+                        duration: 200
+                        easing.type: Easing.OutBack
+                    }
+                }
+
                 // transitions: Transition {
-                //     SequentialAnimation {
-                //         PropertyAnimation {
-                //             target: active_window_container
-                //             property: "visible"
-                //             duration: 0
-                //         }
-                //         PropertyAnimation {
-                //             target: active_window_container
-                //             property: "implicitWidth"
-                //             duration: 200
-                //             easing.type: Easing.OutBack
-                //         }
+                //     PropertyAnimation {
+                //         target: active_window_container
+                //         property: "implicitWidth"
+                //         duration: 200
+                //         easing.type: Easing.OutBack
                 //     }
                 // }
 
-                PropertyAnimation {
-                    id: name_anim
-                    target: active_window_container
-                    properties: "implicitWidth"
-                    // from: workspace_button.shouldNameBeVisible ? 0 : active_window_container.expandedWidth
-                    to: workspace_button.shouldNameBeVisible ? active_window_container.expandedWidth : 0
-                    duration: 200
-                    easing.type: Easing.OutBack
-                }
+                // PropertyAnimation {
+                //     id: name_anim
+                //     target: active_window_container
+                //     properties: "implicitWidth"
+                //     // from: workspace_button.shouldNameBeVisible ? 0 : active_window_container.expandedWidth
+                //     to: workspace_button.shouldNameBeVisible ? active_window_container.expandedWidth : 0
+                //     duration: 200
+                //     easing.type: Easing.OutBack
+                // }
 
                 Rectangle {
                     anchors.leftMargin: 0
