@@ -13,6 +13,7 @@ RowLayout {
     spacing: 2
 
     function updateTopLevelName() {
+        Hyprland.refreshToplevels();
         let realTopLevel = Hyprland.toplevels.values.find(tl => tl.activated && tl.workspace.id == Hyprland.focusedWorkspace.id);
         if (realTopLevel && realTopLevel.lastIpcObject.initialTitle) {
             activeWindowName = realTopLevel.lastIpcObject.initialTitle;
@@ -20,12 +21,9 @@ RowLayout {
     }
     Component.onCompleted: {
         Hyprland.rawEvent.connect(event => {
-            Hyprland.refreshToplevels();
-            console.log(event.name);
-        });
-        Hyprland.toplevels.valuesChanged.connect(() => {
             updateTopLevelName();
         });
+        Hyprland.toplevels.valuesChanged.connect(updateTopLevelName);
     }
 
     Repeater {
@@ -148,19 +146,19 @@ RowLayout {
                 }
 
                 transitions: Transition {
-                    SequentialAnimation {
-                        PropertyAnimation {
-                            target: activeWindowContainer
-                            property: "visible"
-                            duration: 0
-                        }
-                        PropertyAnimation {
-                            target: activeWindowContainer
-                            property: "implicitWidth"
-                            duration: 200
-                            easing.type: Easing.OutBack
-                        }
+                    // SequentialAnimation {
+                    // PropertyAnimation {
+                    //     target: activeWindowContainer
+                    //     property: "visible"
+                    //     duration: 0
+                    // }
+                    PropertyAnimation {
+                        target: activeWindowContainer
+                        property: "implicitWidth"
+                        duration: 200
+                        easing.type: Easing.OutBack
                     }
+                    // }
                 }
 
                 // Component.onCompleted: workspace_button.modelData.focusedChanged.connect(name_anim.start)
