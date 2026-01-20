@@ -148,6 +148,13 @@ RowLayout {
                         height: 2
                         blur: 1
                     }
+                    RectangularShadow {
+                        anchors.top: parent.top
+                        anchors.left: parent.left
+                        anchors.bottom: parent.bottom
+                        width: 2
+                        blur: 5
+                    }
 
                     Text {
                         id: active_window_text
