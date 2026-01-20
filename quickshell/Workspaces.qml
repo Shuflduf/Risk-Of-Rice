@@ -11,15 +11,19 @@ RowLayout {
     anchors.left: parent.left
     spacing: 2
 
+    function updateWindowName() {
+        Hyprland.refreshToplevels();
+        let actualTopLevel = Hyprland.toplevels.values.find(tl => tl.activated && tl.workspace.id == Hyprland.focusedWorkspace.id);
+        if (actualTopLevel && actualTopLevel.lastIpcObject && actualTopLevel.lastIpcObject.initialTitle) {
+            workspaces.activeWindowName = actualTopLevel.lastIpcObject.initialTitle;
+        } else {
+            workspaces.activeWindowName = "FUCK";
+        }
+    }
+
     Component.onCompleted: {
         Hyprland.rawEvent.connect(event => {
-            Hyprland.refreshToplevels();
-            let actualTopLevel = Hyprland.toplevels.values.find(tl => tl.activated && tl.workspace.id == Hyprland.focusedWorkspace.id);
-            if (actualTopLevel && actualTopLevel.lastIpcObject) {
-                workspaces.activeWindowName = actualTopLevel.lastIpcObject.initialTitle;
-            } else {
-                workspaces.activeWindowName = "FUCK";
-            }
+            updateWindowName();
         });
     }
 
@@ -110,7 +114,6 @@ RowLayout {
                 id: active_window_container
                 property real expandedWidth: active_window_text.width + 20
                 implicitWidth: 0
-                visible: implicitWidth > 20
 
                 Component.onCompleted: workspaces.activeWindowNameChanged.connect(() => {
                     active_window_container.implicitWidth = workspace_button.shouldNameBeVisible ? expandedWidth : 0;
@@ -124,15 +127,6 @@ RowLayout {
                 color: "#494A5B"
                 radius: 4
 
-                // states: State {
-                //     when: workspace_button.shouldNameBeVisible
-                //     PropertyChanges {
-                //         target: active_window_container
-                //         implicitWidth: expandedWidth
-                //         visible: workspace_button.shouldNameBeVisible
-                //     }
-                // }
-
                 Behavior on implicitWidth {
                     NumberAnimation {
                         duration: 200
@@ -140,37 +134,27 @@ RowLayout {
                     }
                 }
 
-                // transitions: Transition {
-                //     PropertyAnimation {
-                //         target: active_window_container
-                //         property: "implicitWidth"
-                //         duration: 200
-                //         easing.type: Easing.OutBack
-                //     }
-                // }
-
-                // PropertyAnimation {
-                //     id: name_anim
-                //     target: active_window_container
-                //     properties: "implicitWidth"
-                //     // from: workspace_button.shouldNameBeVisible ? 0 : active_window_container.expandedWidth
-                //     to: workspace_button.shouldNameBeVisible ? active_window_container.expandedWidth : 0
-                //     duration: 200
-                //     easing.type: Easing.OutBack
-                // }
-
-                Rectangle {
+                ClippingRectangle {
                     anchors.leftMargin: 0
                     anchors.margins: 3
                     anchors.fill: parent
 
                     color: "#343A4D"
 
+                    RectangularShadow {
+                        anchors.top: parent.top
+                        anchors.left: parent.left
+                        anchors.right: parent.right
+                        height: 2
+                        blur: 1
+                    }
+
                     Text {
                         id: active_window_text
                         anchors.centerIn: parent
                         text: workspaces.activeWindowName
                         color: "#A5ACB5"
+                        visible: active_window_container.implicitWidth > 0
                         font {
                             pixelSize: 13
                             family: "RZPix"
