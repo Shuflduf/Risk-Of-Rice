@@ -1,5 +1,6 @@
 import QtQuick.Layouts
 import QtQuick
+import Quickshell
 
 RowLayout {
     id: buttons
@@ -17,6 +18,8 @@ RowLayout {
         radius: 4
         color: "black"
 
+        property bool shown: false
+
         Image {
             anchors.fill: parent
             source: "power.svg"
@@ -26,8 +29,24 @@ RowLayout {
 
         MouseArea {
             anchors.fill: parent
-            onClicked: PowerMenu.showPowerMenu()
+            // onClicked: power_button.shown = true
+            onClicked: PowerMenu.show()
             cursorShape: Qt.PointingHandCursor
         }
+
+        // Rectangle {
+        //     height: 40
+        //     width: 40
+        //     anchors.top: parent.bottom
+
+        // }
+
+        // PopupWindow {
+        //     anchor.window: buttons
+        //     visible: true
+        //     implicitHeight: 40
+        //     implicitWidth: 40
+        //     color: "red"
+        // }
     }
 }

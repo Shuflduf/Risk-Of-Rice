@@ -5,15 +5,27 @@ import QtQuick
 
 Singleton {
     id: root
-    function showPowerMenu() {
-        power_menu.show();
+    function show() {
+        menu.visible = true;
     }
-    FloatingWindow {
-        id: power_menu
-        color: "blue"
-
-        function show() {
-            console.log("SHIT");
+    PanelWindow {
+        id: menu
+        anchors {
+            top: true
+            right: true
         }
+        exclusionMode: ExclusionMode.Ignore
+        focusable: true
+        visible: false
+        // visible: power_button.shown
+        Rectangle {
+            anchors.fill: parent
+            // activeFocus: true
+            focus: true
+            onFocusChanged: console.log("BUHH")
+            // focusabl
+            color: activeFocus ? "red" : "green"
+        }
+        // visible:
     }
 }
