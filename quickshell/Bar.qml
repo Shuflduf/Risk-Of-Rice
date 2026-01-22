@@ -9,4 +9,5 @@ Item {
     implicitHeight: 30
     Workspaces {}
     Buttons {}
+    Clock {}
 }
