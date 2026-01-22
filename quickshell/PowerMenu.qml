@@ -4,7 +4,6 @@ pragma ComponentBehavior: Bound
 import Quickshell
 import Quickshell.Io
 import QtQuick
-import QtQuick.Layouts
 
 Singleton {
     id: root
@@ -44,6 +43,10 @@ Singleton {
         implicitWidth: buttons.implicitWidth
         implicitHeight: (buttonHeight + 20) * (root.actions.length)
         color: "transparent"
+        margins {
+            top: 39
+            right: 5
+        }
         // Component.onCompleted: console.log(root.actions.length)
 
         Column {
@@ -100,7 +103,6 @@ Singleton {
                         Behavior on color {
                             ColorAnimation {
                                 duration: 75
-                                // easing.type: Easing.OutBack
                             }
                         }
                     }
