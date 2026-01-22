@@ -89,6 +89,17 @@ Rectangle {
         visible: mouse_area.containsMouse
         implicitWidth: 150
         implicitHeight: items.implicitHeight + 14
+        color: "transparent"
+        // border
+        Rectangle {
+            anchors.fill: parent
+            color: "#292B2D"
+            border {
+                color: "#202224"
+                width: 2
+            }
+            radius: 5
+        }
 
         Column {
             id: items
@@ -105,15 +116,16 @@ Rectangle {
                 font.pixelSize: 18
                 font.family: "RZpix"
                 font.bold: true
+                color: "#E6CA76"
             }
             Text {
                 id: day_label
                 anchors.horizontalCenter: parent.horizontalCenter
-                anchors.margins: 8
                 text: "01 January"
                 font.pixelSize: 12
                 font.family: "RZpix"
-                height: 20
+                color: "white"
+                height: 18
             }
 
             Text {
@@ -122,10 +134,12 @@ Rectangle {
                 font.pixelSize: 14
                 font.family: "RZpix"
                 font.bold: true
+                visible: false
                 // anchors.verticalCenter: parent.verticalCenter
                 // anchors.topMargin: 8
             }
             Column {
+                visible: false
                 Repeater {
                     // model: ["Do thing", "Other thing"]
                     model: [
