@@ -1,4 +1,5 @@
 pragma Singleton
+pragma ComponentBehavior: Bound
 
 import Quickshell
 import Quickshell.Io
@@ -57,9 +58,21 @@ Singleton {
                 Rectangle {
                     id: button
                     required property var modelData
+                    required property int index
                     implicitHeight: 30
                     implicitWidth: 200
                     color: "red"
+                    Component.onCompleted: {
+                        menu.visibleChanged.connect(spawn);
+                    }
+                    // root.onVisibleChanged: () => {}
+
+                    function spawn() {
+                        if (!menu.visible) {
+                            return;
+                        }
+                        console.log(index);
+                    }
 
                     Text {
                         anchors.centerIn: parent
@@ -70,10 +83,6 @@ Singleton {
                         anchors.fill: parent
                         cursorShape: Qt.PointingHandCursor
                         onClicked: process.startDetached()
-                        // onClicked: () => {
-                        //     console.log(button.modelData.command.split(" "));
-                        //     console.log(["oidsjkf", "dpasjkd"]);
-                        // }
                     }
 
                     Process {
