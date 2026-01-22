@@ -29,9 +29,11 @@ Singleton {
 
     function show() {
         menu.visible = true;
+        move_anim.start();
     }
     PanelWindow {
         id: menu
+        property real buttonHeight: 30
         anchors {
             top: true
             right: true
@@ -40,17 +42,28 @@ Singleton {
         focusable: true
         visible: false
         implicitWidth: buttons.implicitWidth
-        implicitHeight: buttons.implicitHeight
+        implicitHeight: (buttonHeight + 20) * (root.actions.length)
         color: "transparent"
+        // Component.onCompleted: console.log(root.actions.length)
 
-        ColumnLayout {
+        Column {
             id: buttons
-            spacing: 5
+            spacing: 20
             anchors.fill: parent
             focus: true
             onActiveFocusChanged: () => {
                 if (!activeFocus)
                     menu.visible = false;
+            }
+
+            PropertyAnimation {
+                id: move_anim
+                target: buttons
+                property: "spacing"
+                from: 20
+                to: 5
+                duration: 300
+                easing.type: Easing.OutBack
             }
 
             Repeater {
@@ -59,21 +72,12 @@ Singleton {
                     id: button
                     required property var modelData
                     required property int index
-                    implicitHeight: 30
+                    // anchors.topMargin: 10
+                    // y: 20
+                    implicitHeight: menu.buttonHeight
                     implicitWidth: 200
                     color: "#101117"
                     radius: 3
-                    Component.onCompleted: {
-                        menu.visibleChanged.connect(spawn);
-                    }
-                    // root.onVisibleChanged: () => {}
-
-                    function spawn() {
-                        if (!menu.visible) {
-                            return;
-                        }
-                        console.log(index);
-                    }
 
                     Rectangle {
                         // id: coloured_part
@@ -92,6 +96,12 @@ Singleton {
                             text: button.modelData.name
                             color: "#FFFFFF"
                             font.family: "RZPix"
+                        }
+                        Behavior on color {
+                            ColorAnimation {
+                                duration: 75
+                                // easing.type: Easing.OutBack
+                            }
                         }
                     }
 
