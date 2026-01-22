@@ -1,52 +1,48 @@
 import QtQuick.Layouts
 import QtQuick
 import Quickshell
+import Qt5Compat.GraphicalEffects
 
-RowLayout {
-    id: buttons
+Rectangle {
 
-    anchors.verticalCenter: parent.verticalCenter
+    // anchors.verticalCenter: parent.verticalCenter
+    anchors.top: parent.top
     anchors.right: parent.right
+    color: "#535A69"
+    implicitWidth: 400
+    implicitHeight: 38
 
-    Rectangle {
-        id: power_button
-        function openPowerMenu() {
-            console.log("FUCK");
+    RowLayout {
+        id: buttons
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        anchors.top: parent.top
+        anchors.rightMargin: 4
+
+        BatteryWidget {}
+        Item {
+            // anchors.horizontalCenter: parent.horizontalCenter
+            implicitWidth: 30
+            implicitHeight: 30
+
+            Image {
+                id: icon
+                anchors.fill: parent
+                source: "power.svg"
+            }
+
+            ColorOverlay {
+                anchors.fill: icon
+                source: icon
+                color: "#A5ACB5"
+            }
+
+            MouseArea {
+                anchors.fill: parent
+                // onClicked: power_button.shown = true
+                onClicked: PowerMenu.show()
+                cursorShape: Qt.PointingHandCursor
+            }
         }
-        implicitWidth: 30
-        implicitHeight: 30
-        radius: 4
-        color: "black"
-
-        property bool shown: false
-
-        Image {
-            anchors.fill: parent
-            source: "power.svg"
-            // color
-            // j
-        }
-
-        MouseArea {
-            anchors.fill: parent
-            // onClicked: power_button.shown = true
-            onClicked: PowerMenu.show()
-            cursorShape: Qt.PointingHandCursor
-        }
-
-        // Rectangle {
-        //     height: 40
-        //     width: 40
-        //     anchors.top: parent.bottom
-
-        // }
-
-        // PopupWindow {
-        //     anchor.window: buttons
-        //     visible: true
-        //     implicitHeight: 40
-        //     implicitWidth: 40
-        //     color: "red"
-        // }
     }
 }

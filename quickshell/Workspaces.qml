@@ -11,6 +11,7 @@ RowLayout {
     property string activeWindowName: "FUCK"
     anchors.verticalCenter: parent.verticalCenter
     anchors.left: parent.left
+    anchors.leftMargin: 4
     spacing: 2
 
     function updateWindowName() {

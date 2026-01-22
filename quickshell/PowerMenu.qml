@@ -44,7 +44,7 @@ Singleton {
         implicitHeight: (buttonHeight + 20) * (root.actions.length)
         color: "transparent"
         margins {
-            top: 39
+            top: 38
             right: 5
         }
         // Component.onCompleted: console.log(root.actions.length)
