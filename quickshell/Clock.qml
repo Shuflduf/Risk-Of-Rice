@@ -15,17 +15,14 @@ Rectangle {
     Process {
         id: dateProc
 
-        command: ["date", "-Iminutes"]
+        command: ["date", "+%I %M %p"]
         running: true
 
         stdout: StdioCollector {
             onStreamFinished: {
-                // console.log(this.text.trim());
-                const date = new Date(this.text.trim());
-                hour_label.text = (date.getHours() % 12).toString().padStart(2, "0");
-                const minStr = date.getMinutes().toString().padStart(2, "0");
-                const amOrPm = (date.getHours() <= 12) ? "AM" : "PM";
-                minute_label.text = `${minStr} ${amOrPm}`;
+                const parts = this.text.trim().split(" ");
+                hour_label.text = parts[0];
+                minute_label.text = `${parts[1]} ${parts[2]}`;
             }
         }
     }
