@@ -61,7 +61,8 @@ Singleton {
                     required property int index
                     implicitHeight: 30
                     implicitWidth: 200
-                    color: "red"
+                    color: "#101117"
+                    radius: 3
                     Component.onCompleted: {
                         menu.visibleChanged.connect(spawn);
                     }
@@ -74,15 +75,32 @@ Singleton {
                         console.log(index);
                     }
 
-                    Text {
-                        anchors.centerIn: parent
-                        text: button.modelData.name
+                    Rectangle {
+                        // id: coloured_part
+                        property bool hovered: false
+                        anchors {
+                            leftMargin: 3
+                            rightMargin: 3
+                            topMargin: 1
+                            bottomMargin: 3
+                        }
+                        anchors.fill: parent
+                        color: mouse_area.containsMouse ? "#2D6171" : "#2A2D42"
+                        radius: 3
+                        Text {
+                            anchors.centerIn: parent
+                            text: button.modelData.name
+                            color: "#FFFFFF"
+                            font.family: "RZPix"
+                        }
                     }
 
                     MouseArea {
+                        id: mouse_area
                         anchors.fill: parent
                         cursorShape: Qt.PointingHandCursor
                         onClicked: process.startDetached()
+                        hoverEnabled: true
                     }
 
                     Process {
