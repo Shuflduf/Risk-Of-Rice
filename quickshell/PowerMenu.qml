@@ -9,20 +9,24 @@ Singleton {
     id: root
     property var actions: [
         {
+            "name": "Lock",
+            "command": "hyprlock"
+        },
+        {
             "name": "Power Off",
-            "command": "sudo shutdown -h now"
+            "command": "shutdown now"
+        },
+        {
+            "name": "Reboot",
+            "command": "reboot"
         },
         {
             "name": "Sleep",
-            "command": "sudo systemctl suspend"
+            "command": "systemctl suspend"
         },
         {
             "name": "Sign Out",
-            "command": "hyprctl dispatch exit"
-        },
-        {
-            "name": "Lock",
-            "command": "hyprlock"
+            "command": "hyprshutdown"
         },
     ]
 
