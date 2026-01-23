@@ -47,9 +47,10 @@ RowLayout {
 
                 RectangularShadow {
                     anchors.fill: parent
-                    offset: Qt.vector2d(0.0, 5.0)
-                    spread: 1
-                    color: Qt.rgba(0.0, 0.0, 0.0, 0.7)
+                    blur: 6
+                    // offset: Qt.vector2d(0.0, 5.0)
+                    // spread: 1
+                    // color: Qt.rgba(0.0, 0.0, 0.0, 0.7)
                 }
                 Rectangle {
                     color: Colours.border
@@ -143,6 +144,7 @@ RowLayout {
                     anchors.fill: parent
 
                     color: Colours.secondaryBg
+                    radius: 3
 
                     RectangularShadow {
                         anchors.top: parent.top

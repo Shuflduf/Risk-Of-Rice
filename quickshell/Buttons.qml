@@ -8,7 +8,7 @@ Rectangle {
     // anchors.verticalCenter: parent.verticalCenter
     anchors.top: parent.top
     anchors.right: parent.right
-    color: "#535A69"
+    color: Colours.bg
     implicitWidth: 400
     implicitHeight: 38
 
@@ -34,7 +34,7 @@ Rectangle {
             ColorOverlay {
                 anchors.fill: icon
                 source: icon
-                color: "#A5ACB5"
+                color: Colours.clock
             }
 
             MouseArea {
