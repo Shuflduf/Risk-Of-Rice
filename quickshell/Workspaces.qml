@@ -52,7 +52,7 @@ RowLayout {
                     color: Qt.rgba(0.0, 0.0, 0.0, 0.7)
                 }
                 Rectangle {
-                    color: "#494A5B"
+                    color: Colours.border
                     radius: 4
                     anchors.fill: parent
                     anchors.margins: 1
@@ -61,7 +61,7 @@ RowLayout {
                     anchors.margins: 4
                     anchors.fill: parent
                     radius: 4
-                    color: workspace_button.modelData.focused ? "#476894" : "#3B3542"
+                    color: workspace_button.modelData.focused ? Colours.bgSelected : Colours.bg
                     width: 26
                     height: 26
 
@@ -77,7 +77,7 @@ RowLayout {
                         anchors.centerIn: parent
                         anchors.horizontalCenterOffset: 1
                         text: workspace_button.modelData.name
-                        color: workspace_button.modelData.focused ? "#FFFFFF" : "#A5ACB5"
+                        color: workspace_button.modelData.focused ? Colours.textSelected : Colours.textUnselected
 
                         font {
                             pixelSize: 14
@@ -127,7 +127,7 @@ RowLayout {
                 anchors.verticalCenterOffset: 1
                 x: 29
                 z: -1
-                color: "#494A5B"
+                color: Colours.border
                 radius: 4
 
                 Behavior on implicitWidth {
@@ -142,7 +142,7 @@ RowLayout {
                     anchors.margins: 3
                     anchors.fill: parent
 
-                    color: "#343A4D"
+                    color: Colours.secondaryBg
 
                     RectangularShadow {
                         anchors.top: parent.top
@@ -163,7 +163,7 @@ RowLayout {
                         id: active_window_text
                         anchors.centerIn: parent
                         text: workspaces.activeWindowName
-                        color: "#A5ACB5"
+                        color: Colours.textUnselected
                         visible: active_window_container.implicitWidth > 0
                         font {
                             pixelSize: 13
