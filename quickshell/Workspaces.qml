@@ -45,13 +45,6 @@ RowLayout {
                 implicitWidth: 30
                 implicitHeight: 30
 
-                RectangularShadow {
-                    anchors.fill: parent
-                    blur: 6
-                    // offset: Qt.vector2d(0.0, 5.0)
-                    // spread: 1
-                    // color: Qt.rgba(0.0, 0.0, 0.0, 0.7)
-                }
                 Rectangle {
                     color: Colours.border
                     radius: 4
@@ -73,6 +66,7 @@ RowLayout {
                         blur: 1
                         color: "#1A1A1A"
                         opacity: 0.5
+                        z: -3
                     }
                     Text {
                         anchors.centerIn: parent
@@ -114,63 +108,66 @@ RowLayout {
                     cursorShape: Qt.PointingHandCursor
                 }
             }
-            Rectangle {
+            ClippingRectangle {
                 id: active_window_container
                 property real expandedWidth: active_window_text.width + 20
                 implicitWidth: 0
+                implicitHeight: 25
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.verticalCenterOffset: 1
+                x: 26
+                z: -1
+                // color: Colours.border
+                // radius: 4
 
                 Component.onCompleted: workspaces.activeWindowNameChanged.connect(() => {
                     active_window_container.implicitWidth = workspace_button.shouldNameBeVisible ? expandedWidth : 0;
                 })
-
-                implicitHeight: 25
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.verticalCenterOffset: 1
-                x: 29
-                z: -1
-                color: Colours.border
-                radius: 4
-
+                anchors.leftMargin: 0
+                anchors.horizontalCenterOffset: 100
                 Behavior on implicitWidth {
                     NumberAnimation {
                         duration: 200
                         easing.type: Easing.OutBack
                     }
                 }
+                // anchors.margins: 3
+                // anchors.fill: parent
+                // x: -100
 
-                ClippingRectangle {
-                    anchors.leftMargin: 0
-                    anchors.margins: 3
-                    anchors.fill: parent
+                border {
+                    width: 3
+                    color: Colours.border
+                }
 
-                    color: Colours.secondaryBg
-                    radius: 3
+                color: Colours.secondaryBg
+                radius: 3
 
-                    RectangularShadow {
-                        anchors.top: parent.top
-                        anchors.left: parent.left
-                        anchors.right: parent.right
-                        height: 2
-                        blur: 1
-                    }
-                    RectangularShadow {
-                        anchors.top: parent.top
-                        anchors.left: parent.left
-                        anchors.bottom: parent.bottom
-                        width: 2
-                        blur: 5
-                    }
+                RectangularShadow {
+                    anchors.top: parent.top
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    height: 2
+                    blur: 1
+                }
+                RectangularShadow {
+                    anchors.top: parent.top
+                    anchors.left: parent.left
+                    anchors.bottom: parent.bottom
+                    width: 2
+                    blur: 5
+                    // z: -10
+                }
 
-                    Text {
-                        id: active_window_text
-                        anchors.centerIn: parent
-                        text: workspaces.activeWindowName
-                        color: Colours.textUnselected
-                        visible: active_window_container.implicitWidth > 0
-                        font {
-                            pixelSize: 13
-                            family: "RZPix"
-                        }
+                Text {
+                    id: active_window_text
+                    anchors.centerIn: parent
+                    text: workspaces.activeWindowName
+                    color: Colours.textUnselected
+                    visible: active_window_container.implicitWidth > 0
+                    font {
+                        pixelSize: 13
+                        family: "RZPix"
                     }
                 }
             }
