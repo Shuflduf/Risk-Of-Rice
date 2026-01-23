@@ -45,19 +45,25 @@ RowLayout {
                 implicitWidth: 30
                 implicitHeight: 30
 
-                Rectangle {
-                    color: Colours.border
-                    radius: 4
-                    anchors.fill: parent
-                    anchors.margins: 1
-                }
+                // Rectangle {
+                //     color: Colours.border
+                //     radius: 4
+                //     anchors.fill: parent
+                //     anchors.margins: 1
+                // }
                 ClippingRectangle {
-                    anchors.margins: 4
+                    anchors.margins: 1
                     anchors.fill: parent
-                    radius: 4
+                    radius: 5
                     color: workspace_button.modelData.focused ? Colours.bgSelected : Colours.bg
                     width: 26
                     height: 26
+
+                    border {
+                        width: 3
+                        color: Colours.border
+                        pixelAligned: false
+                    }
 
                     RectangularShadow {
                         offset: Qt.vector2d(-5.0, -5.0)
