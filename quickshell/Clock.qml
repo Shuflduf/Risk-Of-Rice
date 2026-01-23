@@ -71,7 +71,7 @@ Item {
             anchors.top: true
             exclusionMode: ExclusionMode.Ignore
             // anchors.
-            margins.top: 38
+            margins.top: 40
             visible: mouse_area.containsMouse
             implicitWidth: 150
             implicitHeight: items.implicitHeight + 14
@@ -87,7 +87,7 @@ Item {
                 target: calendar_popup
                 property: "margins.top"
                 from: 60
-                to: 38
+                to: 40
                 duration: 150
                 easing.type: Easing.OutBack
             }
@@ -228,7 +228,7 @@ Item {
         Process {
             id: dateProc
 
-            command: ["date", "+%I %M %p %d %B %Y %A"]
+            command: ["date", "+%I %M %p %d %B %A"]
             running: true
 
             stdout: StdioCollector {
@@ -238,7 +238,7 @@ Item {
                     minute_label.text = `${parts[1]} ${parts[2]}`;
                     day_label.text = `${parts[3]} ${parts[4]}`;
 
-                    weekday_label.text = parts[6];
+                    weekday_label.text = parts[5];
                 }
             }
         }
