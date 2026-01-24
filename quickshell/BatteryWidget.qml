@@ -47,12 +47,26 @@ Item {
         anchors.right: true
         exclusionMode: ExclusionMode.Ignore
         // anchors.
-        margins.top: 40
+        margins.top: 35
         visible: mouse_area.containsMouse
         implicitWidth: 150
         implicitHeight: 65
         // implicitHeight: items.implicitHeight + 14
         color: "transparent"
+
+        onVisibleChanged: () => {
+            if (popup.visible)
+                move_anim.start();
+        }
+        PropertyAnimation {
+            id: move_anim
+            target: popup
+            property: "margins.top"
+            from: 60
+            to: 35
+            duration: 300
+            easing.type: Easing.OutBack
+        }
 
         ClippingRectangle {
             id: battery_info

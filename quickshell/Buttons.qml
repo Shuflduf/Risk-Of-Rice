@@ -29,6 +29,7 @@ Rectangle {
                 id: icon
                 anchors.fill: parent
                 source: "power_button.png"
+                smooth: false
             }
 
             MouseArea {

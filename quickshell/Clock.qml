@@ -89,7 +89,7 @@ Item {
                 property: "margins.top"
                 from: 60
                 to: 40
-                duration: 150
+                duration: 300
                 easing.type: Easing.OutBack
             }
 
