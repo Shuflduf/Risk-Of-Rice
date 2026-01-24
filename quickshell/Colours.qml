@@ -9,6 +9,6 @@ Singleton {
     property string secondaryBg: "#343A4D"
     property string textUnselected: "#A5ACB5"
     property string textSelected: "#FFFFFF"
-    property string clock: "#C0C0C0"
+    property string menu: "#C0C0C0"
     property string header: "#E6CA76"
 }

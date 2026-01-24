@@ -28,13 +28,7 @@ Rectangle {
             Image {
                 id: icon
                 anchors.fill: parent
-                source: "power.svg"
-            }
-
-            ColorOverlay {
-                anchors.fill: icon
-                source: icon
-                color: Colours.clock
+                source: "power_button.png"
             }
 
             MouseArea {

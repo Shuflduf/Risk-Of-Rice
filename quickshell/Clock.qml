@@ -9,11 +9,12 @@ Item {
     anchors.top: parent.top
     anchors.horizontalCenter: parent.horizontalCenter
     implicitWidth: 100
-    implicitHeight: 30
-    anchors.margins: 4
+    implicitHeight: 34
+    anchors.margins: 2
+
     ClippingRectangle {
         anchors.fill: parent
-        radius: 4
+        radius: 6
         color: Colours.bg
 
         border {
@@ -37,7 +38,7 @@ Item {
                 id: hour_label
                 anchors.verticalCenter: parent.verticalCenter
                 text: "00"
-                color: Colours.clock
+                color: Colours.menu
                 font.pixelSize: 18
                 font.family: "RZpix"
                 font.bold: true
@@ -45,7 +46,7 @@ Item {
             Text {
                 anchors.verticalCenter: parent.verticalCenter
                 text: ":"
-                color: Colours.clock
+                color: Colours.menu
                 font.pixelSize: 12
                 font.family: "RZpix"
             }
@@ -53,7 +54,7 @@ Item {
                 id: minute_label
                 anchors.verticalCenter: parent.verticalCenter
                 text: "00 AM"
-                color: Colours.clock
+                color: Colours.menu
                 font.pixelSize: 12
                 font.family: "RZpix"
             }
