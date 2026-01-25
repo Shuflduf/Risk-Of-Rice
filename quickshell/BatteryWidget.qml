@@ -7,8 +7,16 @@ import Quickshell.Io
 import Quickshell.Widgets
 
 Item {
+    id: root
     implicitHeight: 30
     implicitWidth: 30
+
+    property var profileNames: {
+        "power-saver": "Power Saver",
+        "balanced": "Balanced",
+        "performance": "Performance"
+    }
+
     Image {
         id: battery_img
         anchors.fill: parent
@@ -39,6 +47,7 @@ Item {
         hoverEnabled: true
         anchors.fill: parent
         cursorShape: Qt.PointingHandCursor
+        onClicked: profile_proc_cycle.running = true
     }
 
     PanelWindow {
@@ -50,7 +59,7 @@ Item {
         margins.top: 35
         visible: mouse_area.containsMouse
         implicitWidth: 150
-        implicitHeight: 65
+        implicitHeight: 85
         // implicitHeight: items.implicitHeight + 14
         color: "transparent"
 
@@ -112,14 +121,63 @@ Item {
                     font.pixelSize: 12
                     font.family: "RZpix"
                     color: Colours.textSelected
-                    height: 24
+                    // height: 24
+                }
+                Text {
+                    id: bat_profile
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    text: "Loading"
+                    font.pixelSize: 12
+                    font.family: "RZpix"
+                    font.bold: true
+                    color: Colours.textSelected
                 }
             }
         }
     }
 
     Process {
-        id: proc
+        id: profile_proc_cycle
+
+        property string nextProfile
+        Component.onCompleted: {
+            bat_profile.textChanged.connect(() => {
+                switch (bat_profile.text) {
+                case "Power Saver":
+                    nextProfile = "balanced";
+                    break;
+                case "Balanced":
+                    nextProfile = "performance";
+                    break;
+                case "Performance":
+                    nextProfile = "power-saver";
+                    break;
+                default:
+                    nextProfile = "balanced";
+                }
+            });
+        }
+        command: ["powerprofilesctl", "set", nextProfile]
+
+        stdout: StdioCollector {
+            onStreamFinished: {
+                bat_profile.text = root.profileNames[profile_proc_cycle.nextProfile];
+            }
+        }
+    }
+
+    Process {
+        id: profile_proc_get
+        command: ["powerprofilesctl", "get"]
+        stdout: StdioCollector {
+            onStreamFinished: {
+                bat_profile.text = root.profileNames[this.text.trim()];
+            }
+        }
+    }
+
+    Process {
+        id: battery_proc
 
         command: ["upower", "-i", "/org/freedesktop/UPower/devices/battery_BAT0"]
         running: true
@@ -155,6 +213,9 @@ Item {
         interval: 2000
         running: true
         repeat: true
-        onTriggered: proc.running = true
+        onTriggered: {
+            profile_proc_get.running = true;
+            battery_proc.running = true;
+        }
     }
 }

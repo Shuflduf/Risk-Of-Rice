@@ -36,7 +36,6 @@ Item {
             spacing: 2
             Text {
                 id: hour_label
-                anchors.verticalCenter: parent.verticalCenter
                 text: "00"
                 color: Colours.menu
                 font.pixelSize: 18
@@ -44,7 +43,6 @@ Item {
                 font.bold: true
             }
             Text {
-                anchors.verticalCenter: parent.verticalCenter
                 text: ":"
                 color: Colours.menu
                 font.pixelSize: 12
@@ -52,7 +50,6 @@ Item {
             }
             Text {
                 id: minute_label
-                anchors.verticalCenter: parent.verticalCenter
                 text: "00 AM"
                 color: Colours.menu
                 font.pixelSize: 12
