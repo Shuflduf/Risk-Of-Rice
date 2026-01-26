@@ -49,7 +49,6 @@ Item {
             onStreamFinished: {
                 const parts = this.text.trim().split(" ");
                 const volume = parseInt(parts[1].slice(2));
-                // console.log(volume);
                 sound_img.updateImg(volume);
                 mute_img.visible = parts.length >= 3 && parts[2] == "[MUTED]";
                 volume_label.text = `${volume}%`;
@@ -57,22 +56,18 @@ Item {
         }
     }
 
-    Process {
-        id: update_playerctl_info
-        command: ["playerctl", "metadata"]
-    }
-
     PanelWindow {
         id: popup
         anchors.top: true
         anchors.right: true
         exclusionMode: ExclusionMode.Ignore
+        // focusable: true
         // anchors.
-        margins.right: 85
+        margins.right: 120
         margins.top: 35
         visible: mouse_area.containsMouse
-        implicitWidth: 150
-        implicitHeight: 65
+        implicitWidth: 80
+        implicitHeight: 43
         color: "transparent"
 
         onVisibleChanged: () => {

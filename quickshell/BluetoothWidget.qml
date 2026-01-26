@@ -115,7 +115,7 @@ Item {
 
                 Repeater {
                     model: popup.devices
-                    Component.onCompleted: popup.devicesChanged.connect(() => console.log(popup.devices))
+                    // Component.onCompleted: popup.devicesChanged.connect(() => console.log(popup.devices))
                     Text {
                         required property string modelData
                         text: modelData

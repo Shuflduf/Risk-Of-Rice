@@ -59,6 +59,7 @@ Singleton {
             anchors.fill: parent
             focus: true
             onActiveFocusChanged: () => {
+                // console
                 if (!activeFocus)
                     menu.visible = false;
             }
