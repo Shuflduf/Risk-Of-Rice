@@ -1,7 +1,5 @@
-import QtQuick.Layouts
 import QtQuick
 import Quickshell
-import Qt5Compat.GraphicalEffects
 import QtQuick.Effects
 import Quickshell.Io
 import Quickshell.Widgets

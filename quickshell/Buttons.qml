@@ -19,6 +19,7 @@ Rectangle {
         anchors.top: parent.top
         anchors.rightMargin: 4
 
+        WifiWidget {}
         BatteryWidget {}
         Item {
             // anchors.horizontalCenter: parent.horizontalCenter
