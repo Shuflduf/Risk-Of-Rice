@@ -40,13 +40,11 @@ Item {
                     const parts = line.split(" ");
                     if (parts.length < 3)
                         break;
-                    // console.log(parts.slice(2).join(" "));
                     popup.devices = [...popup.devices, parts.slice(2).join(" ")];
                 }
                 if (popup.devices.length < 1) {
                     popup.devices = ["No Devices Connected"];
                 }
-                // console.log(popup.devices);
             }
         }
     }
