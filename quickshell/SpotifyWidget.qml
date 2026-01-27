@@ -89,6 +89,11 @@ Item {
         implicitHeight: 25 + content.implicitHeight
         color: "transparent"
 
+        onVisibleChanged: () => {
+            if (popup.visible)
+                move_anim.start();
+        }
+
         PropertyAnimation {
             id: move_anim
             target: popup
