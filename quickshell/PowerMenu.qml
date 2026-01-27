@@ -84,7 +84,7 @@ Singleton {
                     // y: 20
                     implicitHeight: menu.buttonHeight
                     implicitWidth: 200
-                    color: "#101117"
+                    color: Colours.border
                     radius: 3
 
                     Rectangle {
@@ -97,17 +97,17 @@ Singleton {
                             bottomMargin: 3
                         }
                         anchors.fill: parent
-                        color: mouse_area.containsMouse ? "#2D6171" : "#2A2D42"
+                        color: mouse_area.containsMouse ? Colours.secondaryBg : Colours.bg
                         radius: 3
                         Text {
                             anchors.centerIn: parent
                             text: button.modelData.name
-                            color: "#FFFFFF"
+                            color: mouse_area.containsMouse ? Colours.textSelected : Colours.textUnselected
                             font.family: "RZPix"
                         }
                         Behavior on color {
                             ColorAnimation {
-                                duration: 75
+                                duration: 50
                             }
                         }
                     }
