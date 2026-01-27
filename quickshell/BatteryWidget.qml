@@ -6,8 +6,8 @@ import Quickshell.Widgets
 
 Item {
     id: root
-    implicitHeight: 30
-    implicitWidth: 30
+    implicitHeight: 32
+    implicitWidth: 32
 
     property var profileNames: {
         "power-saver": "Power Saver",

@@ -9,7 +9,7 @@ Rectangle {
     anchors.top: parent.top
     anchors.right: parent.right
     color: Colours.bg
-    implicitWidth: 400
+    implicitWidth: buttons.implicitWidth - 25
     implicitHeight: 38
 
     RowLayout {
@@ -19,6 +19,21 @@ Rectangle {
         anchors.top: parent.top
         anchors.rightMargin: 4
 
+        Item {
+            implicitHeight: 32
+            implicitWidth: 32
+            Layout.fillHeight: true
+
+            Image {
+                anchors.fill: parent
+                source: "panel_end.png"
+                smooth: false
+                // Layout.fillHeight: parent
+                // anchors.fill: parent
+                // implicitHeight: 30
+            }
+        }
+
         SpotifyWidget {}
         SoundWidget {}
         BluetoothWidget {}
@@ -26,8 +41,8 @@ Rectangle {
         BatteryWidget {}
         Item {
             // anchors.horizontalCenter: parent.horizontalCenter
-            implicitWidth: 30
-            implicitHeight: 30
+            implicitWidth: 32
+            implicitHeight: 32
 
             Image {
                 id: icon

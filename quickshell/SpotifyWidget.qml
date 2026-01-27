@@ -7,8 +7,8 @@ import QtQuick.Layouts
 
 Item {
     id: root
-    implicitHeight: 30
-    implicitWidth: 30
+    implicitHeight: 32
+    implicitWidth: 32
 
     Image {
         id: sound_img
@@ -71,7 +71,7 @@ Item {
                 }
                 content.trackInfo = trackInfo;
                 popup.expanded = true;
-                console.log(JSON.stringify(trackInfo, null, 2));
+                // console.log(JSON.stringify(trackInfo, null, 2));
             }
         }
     }
