@@ -15,12 +15,6 @@ Item {
         anchors.fill: parent
         source: "spotify.png"
         smooth: false
-
-        // function updateImg(percent) {
-        //     const imgs = ["sound1.png", "sound2.png", "sound3.png"];
-        //     const index = Math.round(percent * (imgs.length - 1) / 100);
-        //     source = imgs[index];
-        // }
     }
 
     MouseArea {
@@ -40,11 +34,6 @@ Item {
         }
     }
 
-    // Process {
-    //     id: open_pulsemixer
-    //     command: ["hyprctl", "dispatch", "exec", "[float] ghostty -e pulsemixer"]
-    // }
-
     Process {
         id: playerctl_pause
         command: ["playerctl", "play-pause"]
@@ -56,19 +45,11 @@ Item {
         running: true
         stdout: StdioCollector {
             onStreamFinished: {
-                // console.log(this.text);
                 if (this.text.length < 1) {
                     status_label.text = "Not Found";
                 } else {
                     status_label.text = this.text.trim();
                 }
-                // const lines = this.text.trim().split("\n");
-                // const trackInfo = {};
-                // for (const line of lines) {
-                //     const info = line.split(":")[1];
-                //     trackInfo[info.split(" ")[0]] = line.split(" ").filter(s => s).slice(2)[0];
-                // }
-                // console.log(JSON.stringify(trackInfo, null, 2));
             }
         }
     }
@@ -81,8 +62,6 @@ Item {
                 if (this.text.length < 1) {
                     return;
                 }
-                // console.log(this.text.length);
-                // console.log("A", this.text);
                 const lines = this.text.trim().split("\n");
                 const trackInfo = {};
                 for (const line of lines) {
@@ -95,47 +74,18 @@ Item {
         }
     }
 
-    // Process {
-    //     id: update_playerctl_info
-    //     command: ["playerctl", "metadata"]
-    //     running: true
-    //     stdout: StdioCollector {
-    //         onStreamFinished: {
-    //             const lines = this.text.trim().split("\n");
-    //             const trackInfo = {};
-    //             for (const line of lines) {
-    //                 const info = line.split(":")[1];
-    //                 trackInfo[info.split(" ")[0]] = line.split(" ").filter(s => s).slice(2)[0];
-    //             }
-    //             console.log(JSON.stringify(trackInfo, null, 2));
-    //         }
-    //     }
-    // }
-
     PanelWindow {
         id: popup
-
-        // property bool expanded: false
-        // focusable: true
         anchors.top: true
         anchors.right: true
         exclusionMode: ExclusionMode.Ignore
-        // anchors.
-        // anchors.
-        margins.right: 95
+        margins.right: 70
         margins.top: 40
         visible: mouse_area.containsMouse
         implicitWidth: 250
         implicitHeight: 25 + content.implicitHeight
         color: "transparent"
 
-        onVisibleChanged: () => {
-        // console.log(visible);
-        // if (visible) {
-        // popup.margins.top = 100;
-        // move_anim.start();
-        // }
-        }
         PropertyAnimation {
             id: move_anim
             target: popup
@@ -153,11 +103,7 @@ Item {
             color: Colours.bg
             radius: 5
             implicitHeight: content_col.implicitHeight
-            // anchors.verticalCenterOffset: 200
-            // x: 200
             onActiveFocusChanged: () => console.log("active", activeFocus)
-            // focus: true
-            // onFocusChanged: console.log("focus", focus)
 
             RectangularShadow {
                 anchors.top: parent.top
@@ -173,7 +119,6 @@ Item {
 
             Column {
                 id: content_col
-                // implicitHeight: 50
                 anchors.margins: 8
                 anchors.fill: parent
 
@@ -192,7 +137,6 @@ Item {
 
                 RowLayout {
                     spacing: 8
-                    // implicitHeight: 50
                     Item {
                         implicitHeight: 100
                         implicitWidth: 100
@@ -206,16 +150,7 @@ Item {
 
                             Image {
                                 anchors.fill: parent
-                                // anchors {
-                                //     top: parent.top
-                                //     left: parent.left
-                                //     bottom: parent.bottom
-                                // }
-                                // height: 100
-                                // width: 100
-                                // implicitHeight: 40
                                 source: content.trackInfo.artUrl
-                                // radius
                             }
                         }
                     }
@@ -223,19 +158,13 @@ Item {
 
                         implicitHeight: 10
                         implicitWidth: 120
-                        // anchors
-                        // Layout.fillWidth: true
                         Layout.fillHeight: true
                         z: -1
-                        // color: "red"
 
                         Column {
                             spacing: 8
                             anchors.centerIn: parent
-                            // anchors.fill: parent
-                            // anchors.verticalCenter: parent.verticalCenter
-                            // anchors.horizontalCenter
-                            // anchors.right: parent.right
+
                             Text {
                                 text: content.trackInfo.title
                                 anchors.horizontalCenter: parent.horizontalCenter
