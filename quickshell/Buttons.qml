@@ -2,6 +2,7 @@ import QtQuick.Layouts
 import QtQuick
 import Quickshell
 import Qt5Compat.GraphicalEffects
+import QtQuick.Effects
 
 Rectangle {
 
@@ -9,8 +10,14 @@ Rectangle {
     anchors.top: parent.top
     anchors.right: parent.right
     color: Colours.bg
-    implicitWidth: buttons.implicitWidth - 25
+    implicitWidth: buttons.implicitWidth + 10
     implicitHeight: 38
+    bottomLeftRadius: 10
+
+    RectangularShadow {
+        anchors.fill: parent
+        z: -1
+    }
 
     RowLayout {
         id: buttons
@@ -19,21 +26,21 @@ Rectangle {
         anchors.top: parent.top
         anchors.rightMargin: 4
 
-        Item {
-            implicitHeight: 32
-            implicitWidth: 32
-            // anchors.rightMargin: 200
-            Layout.fillHeight: true
+        // Item {
+        //     implicitHeight: 32
+        //     implicitWidth: 32
+        //     // anchors.rightMargin: 200
+        //     Layout.fillHeight: true
 
-            Image {
-                anchors.fill: parent
-                source: "panel_end.png"
-                smooth: false
-                // Layout.fillHeight: parent
-                // anchors.fill: parent
-                // implicitHeight: 30
-            }
-        }
+        //     Image {
+        //         anchors.fill: parent
+        //         source: "panel_end.png"
+        //         smooth: false
+        //         // Layout.fillHeight: parent
+        //         // anchors.fill: parent
+        //         // implicitHeight: 30
+        //     }
+        // }
 
         Item {}
 
