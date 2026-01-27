@@ -60,6 +60,7 @@ Item {
         stdout: StdioCollector {
             onStreamFinished: {
                 if (this.text.length < 1) {
+                    popup.expanded = false;
                     return;
                 }
                 const lines = this.text.trim().split("\n");
@@ -69,6 +70,7 @@ Item {
                     trackInfo[info.split(" ")[0]] = line.split(" ").filter(s => s).slice(2).join(" ");
                 }
                 content.trackInfo = trackInfo;
+                popup.expanded = true;
                 console.log(JSON.stringify(trackInfo, null, 2));
             }
         }
@@ -76,13 +78,14 @@ Item {
 
     PanelWindow {
         id: popup
+        property bool expanded: false
         anchors.top: true
         anchors.right: true
         exclusionMode: ExclusionMode.Ignore
-        margins.right: 70
+        margins.right: expanded ? 70 : 115
         margins.top: 40
         visible: mouse_area.containsMouse
-        implicitWidth: 250
+        implicitWidth: expanded ? 250 : 150
         implicitHeight: 25 + content.implicitHeight
         color: "transparent"
 
@@ -136,6 +139,7 @@ Item {
                 }
 
                 RowLayout {
+                    visible: popup.expanded
                     spacing: 8
                     Item {
                         implicitHeight: 100
