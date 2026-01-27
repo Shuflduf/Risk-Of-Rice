@@ -1,6 +1,8 @@
 pragma Singleton
 pragma ComponentBehavior: Bound
 
+import Quickshell.Widgets
+import QtQuick.Effects
 import Quickshell
 import Quickshell.Io
 import QtQuick
@@ -77,7 +79,7 @@ Singleton {
             Repeater {
                 model: root.actions
 
-                Rectangle {
+                ClippingRectangle {
                     id: button
                     property bool hovered: false
                     required property var modelData
@@ -90,6 +92,15 @@ Singleton {
                     }
                     color: mouse_area.containsMouse ? Colours.secondaryBg : Colours.bg
                     radius: 3
+
+                    RectangularShadow {
+                        anchors.top: parent.top
+                        anchors.left: parent.left
+                        anchors.right: parent.right
+                        implicitHeight: 2
+                        blur: 2
+                    }
+
                     Text {
                         anchors.centerIn: parent
                         text: button.modelData.name

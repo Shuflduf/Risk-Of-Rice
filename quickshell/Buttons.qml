@@ -11,8 +11,8 @@ Rectangle {
     anchors.right: parent.right
     color: Colours.bg
     implicitWidth: buttons.implicitWidth + 10
-    implicitHeight: 38
-    bottomLeftRadius: 10
+    implicitHeight: 34
+    bottomLeftRadius: 5
 
     RectangularShadow {
         anchors.fill: parent
@@ -25,6 +25,7 @@ Rectangle {
         anchors.bottom: parent.bottom
         anchors.top: parent.top
         anchors.rightMargin: 4
+        spacing: 8
 
         // Item {
         //     implicitHeight: 32
