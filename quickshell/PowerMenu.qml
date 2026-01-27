@@ -76,42 +76,31 @@ Singleton {
 
             Repeater {
                 model: root.actions
+
                 Rectangle {
                     id: button
+                    property bool hovered: false
                     required property var modelData
                     required property int index
-                    // anchors.topMargin: 10
-                    // y: 20
                     implicitHeight: menu.buttonHeight
                     implicitWidth: 200
-                    color: Colours.border
+                    border {
+                        width: 2
+                        color: Colours.border
+                    }
+                    color: mouse_area.containsMouse ? Colours.secondaryBg : Colours.bg
                     radius: 3
-
-                    Rectangle {
-                        // id: coloured_part
-                        property bool hovered: false
-                        anchors {
-                            leftMargin: 3
-                            rightMargin: 3
-                            topMargin: 1
-                            bottomMargin: 3
-                        }
-                        anchors.fill: parent
-                        color: mouse_area.containsMouse ? Colours.secondaryBg : Colours.bg
-                        radius: 3
-                        Text {
-                            anchors.centerIn: parent
-                            text: button.modelData.name
-                            color: mouse_area.containsMouse ? Colours.textSelected : Colours.textUnselected
-                            font.family: "RZPix"
-                        }
-                        Behavior on color {
-                            ColorAnimation {
-                                duration: 50
-                            }
+                    Text {
+                        anchors.centerIn: parent
+                        text: button.modelData.name
+                        color: mouse_area.containsMouse ? Colours.textSelected : Colours.textUnselected
+                        font.family: "RZPix"
+                    }
+                    Behavior on color {
+                        ColorAnimation {
+                            duration: 50
                         }
                     }
-
                     MouseArea {
                         id: mouse_area
                         anchors.fill: parent
