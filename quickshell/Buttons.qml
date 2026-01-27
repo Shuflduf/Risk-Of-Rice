@@ -22,6 +22,7 @@ Rectangle {
         Item {
             implicitHeight: 32
             implicitWidth: 32
+            // anchors.rightMargin: 200
             Layout.fillHeight: true
 
             Image {
@@ -33,6 +34,8 @@ Rectangle {
                 // implicitHeight: 30
             }
         }
+
+        Item {}
 
         SpotifyWidget {}
         SoundWidget {}
