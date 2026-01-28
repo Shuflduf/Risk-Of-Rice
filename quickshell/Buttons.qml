@@ -44,6 +44,8 @@ Rectangle {
         // }
 
         Item {}
+        TrayWidget {}
+        Item {}
 
         SpotifyWidget {}
         SoundWidget {}
