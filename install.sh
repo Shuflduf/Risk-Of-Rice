@@ -24,5 +24,11 @@ sudo pacman -S \
 
 yay -S \
   spotify \
-  pacsea-bin
+  pacsea-bin \
+  zen-browser-bin
+
+mkdir -p ${XDG_CONFIG_HOME}/fish/
+cp -f ./config.fish $XDG_CONFIG_HOME/fish/
+
+mkdir -p ~/Pictures/Screenshots
 
