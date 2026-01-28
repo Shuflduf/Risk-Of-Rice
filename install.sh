@@ -62,17 +62,19 @@ yay -S \
   pacsea-bin \
   zen-browser-bin
 
+mkdir -p $XDG_CONFIG_HOME/hypr/
 mkdir -p $XDG_CONFIG_HOME/fish/
 mkdir -p $XDG_CONFIG_HOME/quickshell/
-mkdir -p $XDG_CONFIG_HOME/hypr/
 mkdir -p $XDG_DATA_HOME/Risk-Of-Rice/wallpapers
 
 mkdir -p ~/.local/share/fonts/
 mkdir -p ~/Pictures/Screenshots
 
+cp -f ./hyprland.conf $XDG_CONFIG_HOME/hypr/
+cp -f ./hyprlock.conf $XDG_CONFIG_HOME/hypr/
+cp -f ./hyprtoolkit.conf $XDG_CONFIG_HOME/hypr/
 cp -f ./config.fish $XDG_CONFIG_HOME/fish/
 cp -rf ./quickshell/* $XDG_CONFIG_HOME/quickshell/
-cp -f ./hyprland.conf $XDG_CONFIG_HOME/hypr/
 cp -rf ./wallpapers/* $XDG_DATA_HOME/Risk-Of-Rice/wallpapers
 cp -f ./rzpix.ttf ~/.local/share/fonts/
 
