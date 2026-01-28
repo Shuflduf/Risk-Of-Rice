@@ -159,7 +159,7 @@ Item {
 
                             Image {
                                 anchors.fill: parent
-                                source: content.trackInfo.artUrl
+                                source: content.trackInfo.artUrl ? content.trackInfo.artUrl : ""
                             }
                         }
                     }
@@ -175,7 +175,7 @@ Item {
                             anchors.centerIn: parent
 
                             Text {
-                                text: content.trackInfo.title
+                                text: content.trackInfo.title ? content.trackInfo.title : ""
                                 anchors.horizontalCenter: parent.horizontalCenter
                                 anchors.margins: 8
                                 font.pixelSize: 12
@@ -184,7 +184,7 @@ Item {
                                 color: Colours.textSelected
                             }
                             Text {
-                                text: content.trackInfo.artist
+                                text: content.trackInfo.artist ? content.trackInfo.artist : ""
                                 anchors.horizontalCenter: parent.horizontalCenter
                                 anchors.margins: 8
                                 font.pixelSize: 12
