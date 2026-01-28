@@ -9,7 +9,7 @@ Rectangle {
     // anchors.verticalCenter: parent.verticalCenter
     anchors.top: parent.top
     anchors.right: parent.right
-    color: Colours.bg
+    color: Colours.border
     implicitWidth: buttons.implicitWidth + 10
     implicitHeight: 34
     bottomLeftRadius: 5

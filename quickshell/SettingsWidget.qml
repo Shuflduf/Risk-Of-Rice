@@ -126,7 +126,7 @@ Item {
                         anchors.fill: parent
                         cursorShape: Qt.PointingHandCursor
                         hoverEnabled: true
-                        onClicked: console.log(Wallpapers.wallpapers)
+                        onClicked: Wallpapers.cycleWallpaper()
                     }
                 }
             }

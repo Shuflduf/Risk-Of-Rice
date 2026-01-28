@@ -123,11 +123,10 @@ RowLayout {
                 anchors.verticalCenterOffset: 1
                 x: 26
                 z: -1
-                // color: Colours.border
-                // radius: 4
 
                 Component.onCompleted: workspaces.activeWindowNameChanged.connect(() => {
-                    active_window_container.implicitWidth = workspace_button.shouldNameBeVisible ? expandedWidth : 0;
+                    if (workspace_button)
+                        active_window_container.implicitWidth = workspace_button.shouldNameBeVisible ? expandedWidth : 0;
                 })
                 anchors.leftMargin: 0
                 anchors.horizontalCenterOffset: 100
