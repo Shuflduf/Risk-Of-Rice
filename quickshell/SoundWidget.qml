@@ -63,7 +63,7 @@ Item {
         exclusionMode: ExclusionMode.Ignore
         // focusable: true
         // anchors.
-        margins.right: 140
+        margins.right: 180
         margins.top: 35
         visible: mouse_area.containsMouse
         implicitWidth: 80

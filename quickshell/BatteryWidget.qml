@@ -54,6 +54,7 @@ Item {
         anchors.right: true
         exclusionMode: ExclusionMode.Ignore
         // anchors.
+        margins.right: 25
         margins.top: 35
         visible: mouse_area.containsMouse
         implicitWidth: 150
@@ -190,7 +191,7 @@ Item {
                     if (trimmed.startsWith('percentage:')) {
                         const bat_percent = trimmed.split(':')[1].trim().slice(0, -1);
                         percent_label.text = `${bat_percent}%`;
-                        warning_indicator.visible = bat_percent < 10;
+                        warning_indicator.visible = bat_percent < 10 && !charging_indicator.visible;
                         battery_img.updateImg(bat_percent);
                     } else if (trimmed.startsWith('state:')) {
                         const state = trimmed.split(':')[1].trim();

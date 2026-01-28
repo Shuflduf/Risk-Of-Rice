@@ -82,7 +82,7 @@ Item {
         anchors.top: true
         anchors.right: true
         exclusionMode: ExclusionMode.Ignore
-        margins.right: expanded ? 70 : 115
+        margins.right: expanded ? 135 : 180
         margins.top: 40
         visible: mouse_area.containsMouse
         implicitWidth: expanded ? 250 : 150

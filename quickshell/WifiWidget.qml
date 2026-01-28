@@ -64,7 +64,7 @@ Item {
         anchors.right: true
         exclusionMode: ExclusionMode.Ignore
         // anchors.
-        margins.right: 20
+        margins.right: 60
         margins.top: 35
         visible: mouse_area.containsMouse
         implicitWidth: 150

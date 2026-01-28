@@ -9,10 +9,14 @@ Item {
     implicitHeight: 32
     implicitWidth: 32
 
+    property bool popupOpen: false
+
+    Component.onCompleted: Wallpapers.doLiterallyFuckingNothing()
+
     Image {
-        id: wifi_img
+        id: battery_img
         anchors.fill: parent
-        source: "bluetooth.png"
+        source: "settings.png"
         smooth: false
     }
 
@@ -21,30 +25,10 @@ Item {
         hoverEnabled: true
         anchors.fill: parent
         cursorShape: Qt.PointingHandCursor
-        onClicked: open_bluetui.running = true
-    }
-
-    Process {
-        id: open_bluetui
-        command: ["hyprctl", "dispatch", "exec", "[float] ghostty -e bluetui"]
-    }
-
-    Process {
-        id: update_status_proc
-        command: ["bluetoothctl", "devices", "Connected"]
-        running: true
-        stdout: StdioCollector {
-            onStreamFinished: {
-                popup.devices = [];
-                for (const line of this.text.split("\n")) {
-                    const parts = line.split(" ");
-                    if (parts.length < 3)
-                        break;
-                    popup.devices = [...popup.devices, parts.slice(2).join(" ")];
-                }
-                if (popup.devices.length < 1) {
-                    popup.devices = ["No Devices Connected"];
-                }
+        onClicked: {
+            root.popupOpen = !root.popupOpen;
+            if (root.popupOpen) {
+                content.forceActiveFocus();
             }
         }
     }
@@ -54,15 +38,12 @@ Item {
         anchors.top: true
         anchors.right: true
         exclusionMode: ExclusionMode.Ignore
-        // anchors.
-        margins.right: 105
+        focusable: true
         margins.top: 35
-        visible: mouse_area.containsMouse
+        visible: root.popupOpen
         implicitWidth: 150
-        implicitHeight: 30 + content.implicitHeight
+        implicitHeight: 85
         color: "transparent"
-
-        property var devices: []
 
         onVisibleChanged: () => {
             if (popup.visible)
@@ -79,10 +60,15 @@ Item {
         }
 
         ClippingRectangle {
-            id: battery_info
+            id: content
             anchors.fill: parent
             color: Colours.bg
             radius: 5
+            onActiveFocusChanged: {
+                if (!activeFocus && root.popupOpen) {
+                    root.popupOpen = false;
+                }
+            }
 
             RectangularShadow {
                 anchors.top: parent.top
@@ -97,7 +83,6 @@ Item {
             }
 
             Column {
-                id: content
                 anchors.margins: 8
                 anchors.fill: parent
 
@@ -106,36 +91,45 @@ Item {
                 Text {
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.margins: 8
-                    text: "Devices"
+                    text: "Settings"
                     font.pixelSize: 18
                     font.family: "RZpix"
                     font.bold: true
                     color: Colours.header
                 }
+                Rectangle {
+                    implicitHeight: 30
+                    implicitWidth: 130
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    color: wallpaper_mouse_area.containsMouse ? Colours.bgSelected : Colours.secondaryBg
+                    radius: 3
 
-                Repeater {
-                    model: popup.devices
-                    // Component.onCompleted: popup.devicesChanged.connect(() => console.log(popup.devices))
+                    border {
+                        width: 2
+                        color: Colours.border
+                    }
+
+                    function cycleWallpapers() {
+                    }
+
                     Text {
-                        required property string modelData
-                        text: modelData
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        anchors.margins: 8
+                        anchors.centerIn: parent
+                        text: "Wallpaper"
                         font.pixelSize: 12
                         font.family: "RZpix"
+                        anchors.margins: 4
                         color: Colours.textSelected
+                    }
+
+                    MouseArea {
+                        id: wallpaper_mouse_area
+                        anchors.fill: parent
+                        cursorShape: Qt.PointingHandCursor
+                        hoverEnabled: true
+                        onClicked: console.log(Wallpapers.wallpapers)
                     }
                 }
             }
-        }
-    }
-
-    Timer {
-        interval: 2000
-        running: true
-        repeat: true
-        onTriggered: {
-            update_status_proc.running = true;
         }
     }
 }

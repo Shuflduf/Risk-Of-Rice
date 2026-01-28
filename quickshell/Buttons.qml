@@ -50,6 +50,7 @@ Rectangle {
         BluetoothWidget {}
         WifiWidget {}
         BatteryWidget {}
+        SettingsWidget {}
         Item {
             // anchors.horizontalCenter: parent.horizontalCenter
             implicitWidth: 32
