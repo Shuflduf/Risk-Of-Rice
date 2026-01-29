@@ -9,6 +9,8 @@
 ![](https://github.com/user-attachments/assets/cd40dc99-61de-44a7-b212-2f10201fd2a2)
 (cant take screenshots while screen is locked sorry)
 
+# [Demo Video](https://github.com/user-attachments/assets/cb87dac7-d57b-48d6-9fd5-ec2bb34f0dcf)
+
 # Bar
 - Made specifically for Hyprland
 - Made with [Quickshell](https://quickshell.org/)
