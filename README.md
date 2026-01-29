@@ -69,7 +69,7 @@
 > [!WARNING]
 > THIS HAS ONLY BEEN TESTED ON A FRESH INSTALL OF ARCH IT MIGHT SERIOUSLY FUCK UP YOUR EXISTING SETUP
 
-> [!INFO]
+> [!IMPORTANT]
 > You need to have a fresh install of Arch linux
 
 1. Clone the repo
