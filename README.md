@@ -3,6 +3,11 @@
 *A [Risk of Rain Returns](https://store.steampowered.com/app/1337520/Risk_of_Rain_Returns/)-themed rice!*
 
 # Screenshots
+<img width="310" height="60" alt="image" src="https://github.com/user-attachments/assets/a519a129-13b4-477a-a976-11198f266f6b" />
+<img width="1920" height="57" alt="image" src="https://github.com/user-attachments/assets/8e72b925-cfff-497f-ade2-d9598aab9b92" />
+<img width="382" height="234" alt="image" src="https://github.com/user-attachments/assets/9966e02f-8ea4-4e49-b5eb-6a42c991877f" />
+<img width="1156" height="673" alt="image" src="https://github.com/user-attachments/assets/cd40dc99-61de-44a7-b212-2f10201fd2a2" />
+(cant take screenshots while screen is locked sorry)
 
 # Bar
 - Made specifically for Hyprland
@@ -16,6 +21,7 @@
   - Wifi info
   - Connected bluetooth devices
   - Sound status
+- Power profiles
 - Integration with my favourite TUI apps :)
   - [impala](https://github.com/pythops/impala) for Wifi
   - [bluetui](https://github.com/pythops/bluetui) for Bluetooth
