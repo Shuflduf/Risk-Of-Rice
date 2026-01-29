@@ -4,6 +4,7 @@ import Quickshell
 import Qt5Compat.GraphicalEffects
 import QtQuick.Effects
 import Quickshell.Services.SystemTray
+import QtQuick.Controls
 
 Row {
     spacing: 4
@@ -23,11 +24,28 @@ Row {
                 anchors.fill: parent
                 source: tray_item.modelData.icon
             }
+            // Icon {
+            //     source: tray_item.modelData.icon
+            // }
+            // Button {
+            //     anchors.fill: parent
+            //     icon.source: tray_item.modelData.icon
+            // }
 
             MouseArea {
                 cursorShape: Qt.PointingHandCursor
                 anchors.fill: parent
-                onClicked: tray_item.modelData.activate()
+                acceptedButtons: Qt.LeftButton | Qt.MiddleButton | Qt.RightButton
+                onClicked: mouse => {
+                    if (mouse.button == Qt.LeftButton) {
+                        tray_item.modelData.activate();
+                    } else if (mouse.button == Qt.RightButton) {
+                        var pos = mapToItem(null, mouse.x, mouse.y);
+                        tray_item.modelData.display(tray_item.QsWindow.window, pos.x, pos.y);
+                    } else if (mouse.button == Qt.MiddleButton) {
+                        tray_item.modelData.secondaryActivate();
+                    }
+                }
             }
         }
     }
