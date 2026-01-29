@@ -60,7 +60,8 @@ sudo pacman -S \
 yay -S \
   spotify \
   pacsea-bin \
-  zen-browser-bin
+  zen-browser-bin \
+  spicetify \
 
 mkdir -p $XDG_CONFIG_HOME/hypr/
 mkdir -p $XDG_CONFIG_HOME/fish/
