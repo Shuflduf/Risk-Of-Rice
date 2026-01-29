@@ -3,10 +3,10 @@
 *A [Risk of Rain Returns](https://store.steampowered.com/app/1337520/Risk_of_Rain_Returns/)-themed rice!*
 
 # Screenshots
-<img width="310" height="60" alt="image" src="https://github.com/user-attachments/assets/a519a129-13b4-477a-a976-11198f266f6b" />
-<img width="1920" height="57" alt="image" src="https://github.com/user-attachments/assets/8e72b925-cfff-497f-ade2-d9598aab9b92" />
-<img width="382" height="234" alt="image" src="https://github.com/user-attachments/assets/9966e02f-8ea4-4e49-b5eb-6a42c991877f" />
-<img width="1156" height="673" alt="image" src="https://github.com/user-attachments/assets/cd40dc99-61de-44a7-b212-2f10201fd2a2" />
+![](https://github.com/user-attachments/assets/a519a129-13b4-477a-a976-11198f266f6b)
+![](https://github.com/user-attachments/assets/8e72b925-cfff-497f-ade2-d9598aab9b92)
+![](https://github.com/user-attachments/assets/9966e02f-8ea4-4e49-b5eb-6a42c991877f)
+![](https://github.com/user-attachments/assets/cd40dc99-61de-44a7-b212-2f10201fd2a2)
 (cant take screenshots while screen is locked sorry)
 
 # Bar
@@ -34,16 +34,19 @@
 - [hypridle](https://wiki.hypr.land/Hypr-Ecosystem/hypridle/)
 - [hyprlock](https://wiki.hypr.land/Hypr-Ecosystem/hyprlock/), with a custom config
 - [hyprpaper](https://wiki.hypr.land/Hypr-Ecosystem/hyprpaper/), there are 11 wallpapers in the project by default, feel free to add more to `~/.local/share/Risk-Of-Rice/wallpapers`
+- [hyprshot](https://github.com/Gustash/Hyprshot) for screenshots
+- [hyprpicker](https://wiki.hypr.land/Hypr-Ecosystem/hyprpicker/) for color picker
+
 
 
 # Command Line
-- [Ghostty](https://ghostty.org/)
+- [Ghostty](https://ghostty.org/) as main terminal
 - My favourite CLI apps :D
   - [pacsea](https://github.com/Firstp1ck/Pacsea) (this is literally the best arch package manager tui thing ever)
-  - [fish](https://fishshell.com/), with a `config.fish` included
-  - [starship](https://starship.rs/)
-  - [lazygit](https://github.com/jesseduffield/lazygit)
-  - [**yazi**](https://yazi-rs.github.io/)
+  - [fish](https://fishshell.com/), really cool shell, with a `config.fish` included
+  - [starship](https://starship.rs/) for better shell prompts
+  - [lazygit](https://github.com/jesseduffield/lazygit) for literally the only way i can ever use git now
+  - [**yazi**](https://yazi-rs.github.io/) since its a filemanager and also since it sounds like the enby version of yuri
   - [helix](https://helix-editor.com/) as the default text editor (sorry vim cultists)
 
 
