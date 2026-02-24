@@ -50,7 +50,7 @@ Item {
                 const parts = this.text.trim().split(" ");
                 const volume = parseInt(parts[1].slice(2));
                 sound_img.updateImg(volume);
-                mute_img.visible = parts.length >= 3 && parts[2] == "[MUTED]";
+                mute_img.visible = (parts.length >= 3 && parts[2] == "[MUTED]") || volume <= 0;
                 volume_label.text = `${volume}%`;
             }
         }
