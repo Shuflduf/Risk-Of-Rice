@@ -6,6 +6,8 @@ if status is-interactive
     alias ls="eza --long"
     alias la="eza --all --long"
     alias lt="eza --tree -L 2"
+    alias ...="cd ../.."
+    alias ....="cd ../../.."
 
     abbr -a -- pac pacsea
     abbr -a -- hx helix
